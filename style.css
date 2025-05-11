@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e7dedeef;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(4, 160px); /* fixed size, no 1fr stretch */
+  grid-template-rows: repeat(5, 110px); /* 5 rows for 20 cards */
+  justify-content: center;
+  padding: 10px;
+}
+
+
+#grid img {
+    width: 100%;
+    height: auto;
+    border: solid rgb(92, 15, 15);
+
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    
+}
+
+#grid img:hover {
+    transform: scale(1.05);
+
+}
+
+.scores{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 40px;    
+}
+
+.scores h4{
+    color: rgb(5, 39, 39) ;
+}
+
+.scores-span{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 100px;    
+}
+
+
