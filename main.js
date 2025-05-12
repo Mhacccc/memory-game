@@ -178,6 +178,7 @@ const cardArray = [
 
   //flip your card
   function flipCard() {
+
     let cardId = this.getAttribute('data-id')
     cardsChosen.push(cardArray[cardId].name)
     cardsChosenId.push(cardId)
@@ -188,7 +189,13 @@ const cardArray = [
   }
 
   function checkWinner(){
-    return count1>count2?"PLAYER 1":"PLAYER 2"
+    if(count1>count2){
+    return "PLAYER 1"
+    }else if(count1===count2){
+    return "DRAW"
+    }else{
+      return "PLAYER 2"
+    }
   }
 
   
