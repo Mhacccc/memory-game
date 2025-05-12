@@ -124,9 +124,11 @@ const cardArray = [
 
   function flipAllCard(){
     const card = document.querySelectorAll('img')
+
     card.forEach((element,i) => {
         element.setAttribute('src','images/question-mark.png')
     });
+    card.removeEventListener
   }
 
 
