@@ -4,65 +4,114 @@ body {
     margin: 0;
     padding: 20px;
     text-align: center;
-    
 }
 
 h2 {
     color: #333;
     margin-bottom: 10px;
+    font-size: 24px;
 }
 
 h3 {
     color: #666;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    font-size: 18px;
 }
 
 .container {
     display: flex;
     justify-content: center;
-
+    flex-wrap: wrap;
 }
 
 #grid {
-  display: grid;
-  grid-template-columns: repeat(4, 160px); /* fixed size, no 1fr stretch */
-  grid-template-rows: repeat(5, 110px); /* 5 rows for 20 cards */
-  justify-content: center;
-  padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+    max-width: 600px;
 }
-
 
 #grid img {
     width: 100%;
-    height: auto;
-    border: solid rgb(92, 15, 15);
+    height: 85px; /* match height */
 
+    border: solid rgb(92, 15, 15);
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-    
+    border-radius: 8px;
 }
+
 
 #grid img:hover {
     transform: scale(1.05);
-
 }
 
-.scores{
+.scores {
     display: flex;
     justify-content: center;
     text-align: center;
-    gap: 40px;    
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.scores h4{
-    color: rgb(5, 39, 39) ;
+.scores h4 {
+    color: rgb(5, 39, 39);
+    font-size: 16px;
 }
 
-.scores-span{
+.scores-span {
     display: flex;
     justify-content: center;
     text-align: center;
-    gap: 100px;    
+    gap: 40px;
+    flex-wrap: wrap;
 }
 
+button#btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
 
+button#btn:hover {
+    background-color: #555;
+}
+
+#countdown {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* 🔽 Responsive Design */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 20px;
+    }
+
+    h3, h4 {
+        font-size: 16px;
+    }
+
+    #grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+
+    .scores, .scores-span {
+        gap: 15px;
+    }
+
+    button#btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}

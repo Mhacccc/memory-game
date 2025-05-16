@@ -108,28 +108,53 @@ const cardArray = [
 
   })
   //create your board
-  function createBoard() {
-    for (let i = 0; i < cardArray.length; i++) {
-      const card = document.createElement('img')
-      card.setAttribute('src', cardArray[i].img)
-      card.setAttribute('data-id', i)
-      card.style.width="150px"
-      card.style.height="100px"
-      card.addEventListener('click', flipCard)
-      grid.appendChild(card)
+function createBoard() {
+  for (let i = 0; i < cardArray.length; i++) {
+    const card = document.createElement('img');
+    card.setAttribute('src', cardArray[i].img);
+    card.setAttribute('data-id', i);
+
+    card.classList.add("unclickable"); // prevent early click
+    grid.appendChild(card);
+  }
+
+  startCountdown(); // start the 3-2-1 countdown
+}
+
+function startCountdown() {
+  const countdownDisplay = document.getElementById('countdown');
+  let count = 3;
+  countdownDisplay.textContent = `Memorize the cards: ${count}`;
+
+  const countdownInterval = setInterval(() => {
+    count--;
+    if (count > 0) {
+      countdownDisplay.textContent = `Memorize the cards: ${count}`;
+    } else {
+      clearInterval(countdownInterval);
+      countdownDisplay.textContent = ''; // clear text
+      flipAllCard();
+      enableCardClicks();
     }
-    setTimeout(flipAllCard,3000)
-  }
+  }, 1000);
+}
 
 
-  function flipAllCard(){
-    const card = document.querySelectorAll('img')
-
-    card.forEach((element,i) => {
-        element.setAttribute('src','images/question-mark.png')
+  function flipAllCard() {
+    const cards = document.querySelectorAll('#grid img');
+    cards.forEach(card => {
+      card.setAttribute('src', 'images/question-mark.png');
     });
-    card.removeEventListener
   }
+function enableCardClicks() {
+  const cards = document.querySelectorAll('#grid img');
+  cards.forEach(card => {
+    card.addEventListener('click', flipCard);
+    card.classList.remove("unclickable");
+  });
+}
+
+
 
 
 
@@ -179,25 +204,24 @@ const cardArray = [
   }
 
   //flip your card
-  function flipCard() {
+function flipCard() {
+  let cardId = this.getAttribute('data-id');
 
-    let cardId = this.getAttribute('data-id')
-    cardsChosen.push(cardArray[cardId].name)
-    cardsChosenId.push(cardId)
-    this.setAttribute('src', cardArray[cardId].img)
-    if (cardsChosen.length ===2) {
-      setTimeout(checkForMatch, 300)
-    }
-  }
+  if (cardsChosenId.length === 1 && cardsChosenId[0] === cardId) return; // prevent double click on same card
 
-  function checkWinner(){
-    if(count1>count2){
-    return "PLAYER 1"
-    }else if(count1===count2){
-    return "DRAW"
-    }else{
-      return "PLAYER 2"
-    }
+  this.setAttribute('src', cardArray[cardId].img);
+  cardsChosen.push(cardArray[cardId].name);
+  cardsChosenId.push(cardId);
+  if (cardsChosen.length === 2) {
+    // disable clicks temporarily
+    const allCards = document.querySelectorAll('#grid img');
+    allCards.forEach(card => card.removeEventListener('click', flipCard));
+    setTimeout(() => {
+      checkForMatch();
+      allCards.forEach(card => card.addEventListener('click', flipCard));
+    }, 500);
   }
+}
+
 
   
