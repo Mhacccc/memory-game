@@ -26,7 +26,7 @@ h3 {
 
 #grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns */
     gap: 10px;
     justify-content: center;
     padding: 10px;
@@ -35,15 +35,15 @@ h3 {
 }
 
 #grid img {
-    width: 100%;
-    height: 85px; /* match height */
-
+    width: 80%;
+    height: 75%; /* Adapt height to maintain aspect ratio */
+    aspect-ratio: 1/1; /* Keep cards square */
+     /* Ensure images fill the space properly */
     border: solid rgb(92, 15, 15);
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
     border-radius: 8px;
 }
-
 
 #grid img:hover {
     transform: scale(1.05);
@@ -92,7 +92,7 @@ button#btn:hover {
     margin-bottom: 10px;
 }
 
-/* 🔽 Responsive Design */
+/* Responsive adjustments - keeping 4 columns but adjusting other elements */
 @media (max-width: 768px) {
     h2 {
         font-size: 20px;
@@ -102,8 +102,10 @@ button#btn:hover {
         font-size: 16px;
     }
 
+    /* Grid stays at 4 columns but other elements adjust */
     #grid {
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 5px; /* Smaller gap on mobile */
+        padding: 5px;
     }
 
     .scores, .scores-span {
@@ -114,4 +116,21 @@ button#btn:hover {
         font-size: 14px;
         padding: 8px 16px;
     }
+}
+
+/* For very small screens, keep 4 columns but make other adjustments */
+@media (max-width: 360px) {
+    #grid {
+        gap: 3px;
+        padding: 3px;
+    }
+    
+    body {
+        padding: 10px;
+    }
+}
+
+/* Make unclickable cards during countdown */
+.unclickable {
+    pointer-events: none;
 }
