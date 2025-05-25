@@ -56,6 +56,8 @@ const finalScore = document.querySelector('#final-score');
 const timeTaken = document.querySelector('#time-taken');
 const playAgainBtn = document.querySelector('#play-again');
 const backBtn = document.querySelector('#back');
+const gameTitle = document.querySelector('.game-title');
+const gameSubtitle = document.querySelector('.game-subtitle');
 backBtn.style.display = 'none';
 
 // Event Listeners
@@ -72,6 +74,8 @@ difficultySelector.addEventListener('change', function() {
 // Initialize the game
 function startGame() {
     // Hide start button and show restart
+    gameTitle.style.display = 'none';
+    gameSubtitle.style.display = 'none';
     backBtn.style.display = 'inline-block';
     startBtn.style.display = 'none';
     restartBtn.style.display = 'inline-block';
