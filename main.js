@@ -55,8 +55,11 @@ const winnerMessage = document.querySelector('#winner-message');
 const finalScore = document.querySelector('#final-score');
 const timeTaken = document.querySelector('#time-taken');
 const playAgainBtn = document.querySelector('#play-again');
+const backBtn = document.querySelector('#back');
+backBtn.style.display = 'none';
 
 // Event Listeners
+backBtn.addEventListener('click',()=>{location.reload()})
 startBtn.addEventListener('click', startGame);
 restartBtn.addEventListener('click', restartGame);
 playAgainBtn.addEventListener('click', restartGame);
@@ -69,6 +72,7 @@ difficultySelector.addEventListener('change', function() {
 // Initialize the game
 function startGame() {
     // Hide start button and show restart
+    backBtn.style.display = 'inline-block';
     startBtn.style.display = 'none';
     restartBtn.style.display = 'inline-block';
     
